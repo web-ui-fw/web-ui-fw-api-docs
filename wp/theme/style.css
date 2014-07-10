@@ -1,0 +1,135 @@
+/*
+Theme Name: Web UI Framework API Docs
+Template: twentyfourteen
+*/
+
+@import url("../twentyfourteen/style.css");
+
+.site-main {
+	position: relative;
+	margin: 0;
+	margin-top: 48px;
+}
+
+#secondary {
+	background-color: #000;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	margin: 0;
+}
+
+.entry-meta {
+	display: none;
+}
+
+.site {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.site:before {
+	display: none;
+}
+
+.site-content .entry-header,
+.site-content .entry-content,
+.site-content .entry-summary,
+.site-content .entry-meta,
+.page-content {
+	max-width: 800px;
+}
+
+.archive-header,
+.page-header {
+	max-width: 800px;
+}
+
+.section-title {
+	border-bottom: 1px solid black;
+	padding-bottom: 5px;
+}
+
+.option-type,
+.returns,
+#quick-nav header a,
+.version-details {
+	float: right;
+}
+
+.default {
+	text-align: right;
+}
+
+.quick-nav-section {
+	float: left;
+	width: 33%;
+}
+
+#quick-nav {
+	overflow: auto;
+	padding-bottom: 10px;
+}
+
+article .entry-wrapper a {
+	color: black;
+}
+
+header h2 {
+	padding-bottom: 5px;
+	border-bottom: 1px solid black;
+}
+
+.syntaxhighlighter {
+	border: gray;
+	background: #272727;
+	color: white;
+	overflow-x: auto;
+	border-radius: 5px;
+}
+
+.syntaxhighlighter table {
+	margin-bottom: 0;
+}
+
+.syntaxhighlighter td,
+.syntaxhighlighter td pre {
+	margin-bottom: 0;
+	border: none;
+	white-space: nowrap;
+}
+
+.entry-wrapper section {
+	margin-top: 15px;
+}
+
+.api-item {
+	padding-top: 30px;
+}
+
+.api-item ul {
+	list-style-type: initial;
+	margin-left: 1.5em;
+}
+
+/* Syntax highlighting values */
+.syntaxhighlighter.xml .doctype,
+.syntaxhighlighter.xml .tag {
+	color: orange;
+}
+
+.syntaxhighlighter.xml .tag .attribute {
+	color: magenta;
+}
+
+.syntaxhighlighter.xml .tag .value {
+	color: #00bfff;
+}
+
+.syntaxhighlighter.javascript .string {
+	color: #00bfff;
+}
+
+.syntaxhighlighter.javascript .keyword {
+	color: #cd5c5c;
+}
