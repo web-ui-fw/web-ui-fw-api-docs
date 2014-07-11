@@ -5,20 +5,6 @@ Template: twentyfourteen
 
 @import url("../twentyfourteen/style.css");
 
-.site-main {
-	position: relative;
-	margin: 0;
-	margin-top: 48px;
-}
-
-#secondary {
-	background-color: #000;
-	position: absolute;
-	top: 0;
-	bottom: 0;
-	margin: 0;
-}
-
 .entry-meta {
 	display: none;
 }
@@ -26,10 +12,6 @@ Template: twentyfourteen
 .site {
 	margin-left: auto;
 	margin-right: auto;
-}
-
-.site:before {
-	display: none;
 }
 
 .site-content .entry-header,
@@ -85,7 +67,7 @@ header h2 {
 }
 
 .api-item {
-	padding-top: 30px;
+	padding-top: 48px;
 }
 
 .api-item ul {
@@ -93,15 +75,57 @@ header h2 {
 	margin-left: 1.5em;
 }
 
+/*
+ * Improves readability of pre-formatted text in all browsers.
+ * Note: Taken from jquery theme
+ */
+
+pre, code {
+	white-space: pre;
+	white-space: pre-wrap;
+	word-wrap: break-word;
+	word-spacing: 0;
+}
+code {
+	padding: 0 3px;
+	background-color: #eee;
+	border-radius: 3px;
+}
+pre code {
+	background: none;
+	font-size: 16px !important;
+	font-weight: bold;
+	white-space: pre;
+	word-wrap: normal;
+}
+
 /* Syntax highlighting values */
+.syntaxhighlighter a,
+.syntaxhighlighter div,
+.syntaxhighlighter pre,
+.syntaxhighlighter code,
+.syntaxhighlighter table,
+.syntaxhighlighter table td,
+.syntaxhighlighter table tr,
+.syntaxhighlighter table tbody,
+.syntaxhighlighter table thead,
+.syntaxhighlighter table caption,
+.syntaxhighlighter textarea {
+	line-height: 1.3em;
+	width: auto;
+}
+
+
 .syntaxhighlighter {
 	border: gray;
 	background: #272727;
 	color: white;
-	overflow-x: auto;
+	overflow: auto;
 	border-radius: 5px;
+	padding: 10px;
 }
 .syntaxhighlighter table {
+	border: 0;
 	margin-bottom: 0;
 }
 
@@ -109,10 +133,21 @@ header h2 {
 .syntaxhighlighter td pre {
 	margin-bottom: 0;
 	border: none;
+	padding: 0;
 }
 
 .syntaxhighlighter td.gutter {
+	color: lightgray;
 	text-align: right;
+	font-size: 16px;
+	font-weight: bold;
+	line-height: 1.5;
+	padding: 0 10px 0 0;
+	border-right: 2px solid #323232;
+}
+
+.syntaxhighlighter td.code {
+	padding: 0 0 0 10px;
 }
 
 .syntaxhighlighter.xml .doctype,
