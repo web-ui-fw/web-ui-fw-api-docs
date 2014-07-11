@@ -63,26 +63,20 @@ function hack_out_tag( $regex, $haystack, $tag ) {
 
 require( get_template_directory() . "/header.php" );
 
-echo(
-	preg_replace(
+$content = ob_get_clean();
 
-		// Remove pingback and EditURI <link> tags
-		'/[<]link rel="(pingback|EditURI)"[^>]*[>]/',
-		'',
+// Remove search form
+$content = hack_out_tag( '/[<]div id="search-container"/', $content, 'div' );
 
-		// Remove search toggle
-		hack_out_tag(
-			'/[<]div class="search-toggle"[>]/',
+// Remove search toggle
+$content = hack_out_tag( '/[<]div class="search-toggle"/', $content, 'div' );
 
-			// Remove search form
-			hack_out_tag(
-				'/[<]div id="search-container"/',
-				ob_get_clean(),
-				'div'
-			),
-			'div'
-		)
-	)
-);
+// Remove right hand side navigation
+$content = hack_out_tag( '/[<]nav id="primary-navigation"/', $content, 'nav' );
+
+// Remove pingback and EditURI <link> tags
+$content = preg_replace( '/[<]link rel="(pingback|EditURI)"[^>]*[>]/', '', $content );
+
+echo( $content );
 
 ?>
