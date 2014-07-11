@@ -4,11 +4,13 @@
    0. Set the site title to "Web UI Framework API Documentation"
 0. Copy grunt-wordpress.php from [grunt-wordpress](https://github.com/scottgonzalez/grunt-wordpress) to wp-content/plugins
 0. Copy wp/upload-filters.php to wp-content/plugins
+0. Download the Wordpress plugin "Disable Feeds" and unzip it into wp-content/plugins
 0. Copy wp/theme to wp-content/themes/web-ui-fw-api-docs
 0. Log into wordpress as the admin user
   0. Go to Plugins -> Installed Plugins and activate "Grunt WordPress XML-RPC extensions" and "XML-RPC upload filter additions for Web UI Framework API Docs"
   0. Go to Settings -> General and empty the "Tagline" text field. Make sure to save changes.
   0. Go to Settings -> Permalinks and choose "Post name". Make sure to save changes.
+  0. Go to Settings -> Reading and choose "Issue a Page Not Found (404) error for feed requests" from the "Disable Feeds Plugin" section. May sure to save changes.
   0. Go to Appearance -> Themes and choose "Web UI Framework API Docs"
      0. Click "Customize"
 	 0. On the customization screen, click "Widgets: Primary Sidebar" and remove everything except the "Categories" widget.
