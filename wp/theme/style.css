@@ -80,25 +80,6 @@ header h2 {
 	border-bottom: 1px solid black;
 }
 
-.syntaxhighlighter {
-	border: gray;
-	background: #272727;
-	color: white;
-	overflow-x: auto;
-	border-radius: 5px;
-}
-
-.syntaxhighlighter table {
-	margin-bottom: 0;
-}
-
-.syntaxhighlighter td,
-.syntaxhighlighter td pre {
-	margin-bottom: 0;
-	border: none;
-	white-space: nowrap;
-}
-
 .entry-wrapper section {
 	margin-top: 15px;
 }
@@ -113,6 +94,27 @@ header h2 {
 }
 
 /* Syntax highlighting values */
+.syntaxhighlighter {
+	border: gray;
+	background: #272727;
+	color: white;
+	overflow-x: auto;
+	border-radius: 5px;
+}
+.syntaxhighlighter table {
+	margin-bottom: 0;
+}
+
+.syntaxhighlighter td,
+.syntaxhighlighter td pre {
+	margin-bottom: 0;
+	border: none;
+}
+
+.syntaxhighlighter td.gutter {
+	text-align: right;
+}
+
 .syntaxhighlighter.xml .doctype,
 .syntaxhighlighter.xml .tag {
 	color: orange;
