@@ -17,7 +17,7 @@
 	&lt;style&gt;<xsl:value-of select="css/text()"/>	&lt;/style&gt;</xsl:if>
 &lt;/head&gt;
 &lt;body&gt;
-<xsl:value-of select="html/text()"/>
+	<xsl:value-of select="html/text()"/>
 <xsl:if test="code">
 &lt;script&gt;<xsl:value-of select="code/text()"/>&lt;/script&gt;
 </xsl:if>

@@ -54,12 +54,16 @@
 	</methods>
 	<example>
 		<desc>A basic example of a page with a colorpalette.</desc>
-		<html><![CDATA[<div data-role="header">
-		<h1>Web UI Framework Example</h1>
+		<html><![CDATA[
+	<div data-role="page">
+		<div data-role="header">
+			<h1>Web UI Framework Example</h1>
+		</div>
+		<div class="ui-content">
+			<div data-role="colorpalette"></div>
+		</div>
 	</div>
-	<div data-role="content">
-		<div data-role="colorpalette"></div>
-	</div>]]></html>
+]]></html>
 	</example>
 	<category slug="widgets"/>
 </entry>

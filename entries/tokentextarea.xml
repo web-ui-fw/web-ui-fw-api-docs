@@ -120,13 +120,17 @@
 	</methods>
 	<example>
 		<desc>A basic example of a page with tokentextarea.</desc>
-		<html><![CDATA[<div data-role="header">
-		<h1>Web UI Framework Example</h1>
-	</div>
-	<div data-role="content">
-		<div data-role="tokentextarea">
+		<html><![CDATA[
+	<div data-role="page">
+		<div data-role="header">
+			<h1>Web UI Framework Example</h1>
 		</div>
-	</div>]]></html>
+		<div class="ui-content">
+			<div data-role="tokentextarea">
+			</div>
+		</div>
+	</div>
+]]></html>
 	</example>
 	<category slug="widgets"/>
 </entry>

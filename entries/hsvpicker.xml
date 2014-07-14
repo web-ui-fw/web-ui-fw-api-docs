@@ -46,13 +46,17 @@
 	</methods>
 	<example>
 		<desc>A basic example of a page with a hsvpicker.</desc>
-		<html><![CDATA[<div data-role="header">
-		<h1>Web UI Framework Example</h1>
-	</div>
-	<div data-role="content">
-		<div data-role="hsvpicker">
+		<html><![CDATA[
+	<div data-role="page" id="page1">
+		<div data-role="header">
+			<h1>Web UI Framework Example</h1>
 		</div>
-	</div>]]></html>
+		<div data-role="content">
+			<div data-role="hsvpicker">
+			</div>
+		</div>
+	</div>
+]]></html>
 	</example>
 	<category slug="widgets"/>
 </entry>
