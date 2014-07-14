@@ -75,6 +75,10 @@ header h2 {
 	margin-left: 1.5em;
 }
 
+.api-item > div:last-child {
+	padding-top: 10px;
+}
+
 /* Turn top border in list view back on */
 .list-view .site-content .hentry:first-of-type {
 	border-top: 1px solid rgba( 0, 0, 0, 0.1 );
