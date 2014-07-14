@@ -1,7 +1,4 @@
 <?php
-// Remove pingback and EditURL <link> tags
-
-ob_start();
 
 function nearest_index( $regex, $haystack, $offset ) {
 	$returnValue = strlen( $haystack );
@@ -61,6 +58,8 @@ function hack_out_tag( $regex, $haystack, $tag ) {
 	return $haystack;
 }
 
+ob_start();
+
 require( get_template_directory() . "/header.php" );
 
 $content = ob_get_clean();
@@ -77,6 +76,13 @@ $content = hack_out_tag( '/[<]nav id="primary-navigation"/', $content, 'nav' );
 // Remove pingback and EditURI <link> tags
 $content = preg_replace( '/[<]link rel="(pingback|EditURI)"[^>]*[>]/', '', $content );
 
+// Inject script to generate demo from examples
+$content = str_replace( '</head>',
+	"\t" . '<script src="' . get_stylesheet_directory_uri() . '/js/examples.js"></script>' .
+	"\n" . '</head>',
+	$content );
+
 echo( $content );
 
 ?>
+</head>
