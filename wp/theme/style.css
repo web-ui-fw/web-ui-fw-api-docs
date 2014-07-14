@@ -75,6 +75,12 @@ header h2 {
 	margin-left: 1.5em;
 }
 
+/* Turn top border in list view back on */
+.list-view .site-content .hentry:first-of-type {
+	border-top: 1px solid rgba( 0, 0, 0, 0.1 );
+	padding-top: 48px;
+}
+
 /*
  * Improves readability of pre-formatted text in all browsers.
  * Note: Taken from jquery theme
