@@ -26,12 +26,16 @@ body {
 	font-size: 87.5%;
 }
 
+.widget h2 {
+	font-size: 140%; /* of .widget */
+}
+
 .widget h3 {
 	font-size: 130%; /* of .widget */
 }
 
-.widget h2 {
-	font-size: 140%; /* of .widget */
+.widget h4 {
+	font-size: 114%; /* of .widget */
 }
 
 .widget code {
