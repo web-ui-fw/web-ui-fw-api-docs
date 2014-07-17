@@ -70,6 +70,7 @@ header h2 {
 	padding-top: 48px;
 }
 
+.longdesc ul,
 .api-item ul {
 	list-style-type: initial;
 	margin-left: 1.5em;
