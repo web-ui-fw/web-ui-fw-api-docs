@@ -5,29 +5,29 @@
 	<desc>Creates a <placeholder name="name"/></desc>
 	<longdesc>
 		<h2>Token Text Area 2</h2>
-		<p>This widget changes a text item to a button. It can be comprised of a number of button widgets. As the user types text, the widget parses the text at each keystroke and creates a token when the user types a character that acts as a delimiter (<code>;</code> or <code>,</code>). A user can add the <placeholder name="name"/> widget to a contact list, email list, or another list. The typical use of this widget is composing a number of contacts or phone numbers in a specific area of the screen.</p>
+		<p>This widget changes a text item to a button. It can be comprised of a number of button widgets. As the user types text, the widget parses the text at each keystroke and creates a button when the user types a character that acts as a delimiter (<code>;</code> or <code>,</code>). A user can add the <placeholder name="name"/> widget to a contact list, email list, or another list. The typical use of this widget is composing a number of contacts or phone numbers in a specific area of the screen.</p>
 
 		<h3>Structure</h3>
-		<p>The widget derives from the jQuery Mobile <a href="//api.jquerymobile.com/textinput">textinput</a> widget and works on an <code>input</code> of type text. Tokens are created from its initial value upon instantiation and if any text is left over it is set as the value of the input. To create a <placeholder name="name"/> widget, add an <code>input</code> element to your markup:</p>
+		<p>The widget derives from the jQuery Mobile <a href="//api.jquerymobile.com/textinput">textinput</a> widget and works on an <code>input</code> of type text. Buttons are created from its initial value upon instantiation and if any text is left over it is set as the value of the input. To create a <placeholder name="name"/> widget, add an <code>input</code> element to your markup:</p>
 <pre><code><![CDATA[
 <input type="text" id="email-addresses" data-role="tokentextarea2">
 ]]></code></pre>
 
 		<h3>Keyboard interaction</h3>
-		<p>The user may type freely into the input. Whenever she types a delimiter character, the text is tokenized the same way as initially, resulting in new tokens being inserted immediately preceding the input.</p>
-		<p>When the user types Backspace the token nearest the input will be selected in preparation for removal under the following circumstances:
+		<p>The user may type freely into the input. Whenever she types a delimiter character, the text is tokenized the same way as initially, resulting in new buttons being inserted immediately preceding the input.</p>
+		<p>When the user types Backspace the button nearest the input will be selected in preparation for removal under the following circumstances:
 				<ul>
-					<li>There is at least one token before the input.</li>
+					<li>There is at least one button before the input.</li>
 					<li>Pressing Backspace has not resulted in a change in the input's value. That is, the value of the input is equal to the copy maintained in the visibility-hidden span.</li>
 				</ul>
 		</p>
 
 		<h3>Layout and styling</h3>
-		<p>The tokens are placed side-by-side. They wrap to the next line. The input is placed after the last token and sized such that it fills up the rest of the line. As the user types, the widget ensures that the input has sufficient width for accommodating the text typed. It measures the width of the text by maintaining a copy of the input's value in a visibility-hidden span. If the width of the text exceeds the width of the input, the input width is restored to the textinput widget's default of 100%, causing it to wrap to the next line. The widget is styled with a text cursor, making it appear as a large input. Clicking anywhere inside the widget except on one of the tokens will cause the input to receive focus. This further establishes the widget's appearance of being a large input.</p>
+		<p>The buttons are placed side-by-side. They wrap to the next line. The input is placed after the last button and sized such that it fills up the rest of the line. As the user types, the widget ensures that the input has sufficient width for accommodating the text typed. It measures the width of the text by maintaining a copy of the input's value in a visibility-hidden span. If the width of the text exceeds the width of the input, the input width is restored to the textinput widget's default of 100%, causing it to wrap to the next line. The widget is styled with a text cursor, making it appear as a large input. Clicking anywhere inside the widget except on one of the buttons will cause the input to receive focus. This further establishes the widget's appearance of being a large input.</p>
 
-		<h3>Interacting with the tokens</h3>
-		<p>In addition to being able to remove tokens by pressing Backspace, the user can also click on them. The first click on a token will select it, while the second click will remove it. It is possible to prevent selection of a token by attaching a handler to the widget's <a href="#event-select">select</a> event and preventing default on the event object.</p>
-		<p>Whenever the user types, all tokens are deselected. The deselection is performed only after making sure that the selected token immediately preceding the input is removed in response to a Backspace keypress that does not modify the value of the input (as described above).</p>
+		<h3>Interacting with the buttons</h3>
+		<p>In addition to being able to remove buttons by pressing Backspace, the user can also click on them. The first click on a button will select it, while the second click will remove it. It is possible to prevent selection of a button by attaching a handler to the widget's <a href="#event-select">select</a> event and preventing default on the event object.</p>
+		<p>Whenever the user types, all buttons are deselected. The deselection is performed only after making sure that the selected button immediately preceding the input is removed in response to a Backspace keypress that does not modify the value of the input (as described above).</p>
 
   	</longdesc>
 
@@ -39,11 +39,11 @@
 	<events>
 		<xi:include href="../includes/widget-event-create.xml" xmlns:xi="http://www.w3.org/2003/XInclude"/>
 		<event name="select">
-			<desc>Triggered when a token is selected. Preventing default will prevent selection of the token.</desc>
+			<desc>Triggered when a button is selected. Preventing default will prevent selection of the button.</desc>
 			<argument name="event" type="Event"/>
 			<argument name="ui" type="Object">
 				<property name="value" type="string">
-					<desc>The value associated with the token.</desc>
+					<desc>The value associated with the button.</desc>
 				</property>
 			</argument>
 		</event>
@@ -51,11 +51,11 @@
 	<methods>
 		<method name="add">
 			<signature example-params='"my.name@example.com"'>
-				<desc>Insert a new token with the specified value immediately before the input.</desc>
+				<desc>Insert a new button with the specified value immediately before the input.</desc>
 				<argument name="value" type="String"/>
 			</signature>
 			<signature example-params='"my.name@example.com", 12'>
-				<desc>Insert a new token with the specified value at the specified zero-based index among the existing tokens. The token at that index and all tokens following it will move up by one. If the index specified is out of bounds, the token will be inserted immediately before the input.</desc>
+				<desc>Insert a new button with the specified value at the specified zero-based index among the existing tokens. The button at that index and all buttons following it will move up by one. If the index specified is out of bounds, the button will be inserted immediately before the input.</desc>
 				<argument name="value" type="String"/>
 				<argument name="index" type="Number"/>
 			</signature>
@@ -63,10 +63,10 @@
 		<xi:include href="../includes/widget-method-destroy.xml" xmlns:xi="http://www.w3.org/2003/XInclude"/>
 		<method name="inputText">
 			<signature return="String">
-				<desc>Gets the string from the widget. The string consists of the <code>;</code>-separated list of token values, followed by the value of the input.</desc>
+				<desc>Gets the string from the widget. The string consists of the <code>;</code>-separated list of button values, followed by the value of the input.</desc>
 			</signature>
 			<signature example-params='"my.name@example.com; your.name@"'>
-				<desc>Sets the value of the widget. All existing tokens are removed, the argument is tokenized, new tokens are created, and the leftover string is set as the input's value.</desc>
+				<desc>Sets the value of the widget. All existing buttons are removed, the argument is tokenized, new buttons are created, and the leftover string is set as the input's value.</desc>
 				<argument name="text" type="String">
 					<desc>The new value the widget is to have.</desc>
 				</argument>
@@ -80,20 +80,20 @@
 				<desc>Removes all tokens.</desc>
 			</signature>
 			<signature example-params="12">
-				<desc>Remove the token at the specified index.</desc>
+				<desc>Remove the button at the specified index.</desc>
 				<argument name="index" type="Number"/>
 			</signature>
 		</method>
 		<method name="select">
 			<signature return="String">
-				<desc>The values of the selected tokens are returned <code>;</code>-separated in a string.</desc>
+				<desc>The values of the selected buttons are returned <code>;</code>-separated in a string.</desc>
 			</signature>
 			<signature return="Null">
-				<desc>If no tokens are selected, <code>null</code> is returned.</desc>
+				<desc>If no buttons are selected, <code>null</code> is returned.</desc>
 			</signature>
 			<signature example-params="12">
 				<argument name="index" type="Number"/>
-				<desc>Unconditionally selects the token at the zero-based index passed as the parameter. The <a href="#event-select">select</a> event is not triggered.</desc>
+				<desc>Unconditionally selects the button at the zero-based index passed as the parameter. The <a href="#event-select">select</a> event is not triggered.</desc>
 			</signature>
 		</method>
 	</methods>
