@@ -20,6 +20,15 @@ $(function() {
 		}).get().join( "\n" );
 
 		iframeSrc = iframeSrc
+
+			// Replace path for the web-ui-fw style sheet to reflect deployed directory structure
+			.replace( /href="([^"]*)web-ui-fw\.css/,
+				'href="../../web-ui-fw.css' )
+
+			// Replace path for the web-ui-fw script to reflect deployed directory structure
+			.replace( /src="([^"]*)web-ui-fw\.js/,
+				'src="../../web-ui-fw.js' )
+
 			// Insert styling for the live demo that we don't want in the
 			// highlighted code
 			.replace( "</head>",
