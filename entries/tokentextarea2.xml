@@ -4,28 +4,28 @@
 	<title>Tokentextarea2 Widget</title>
 	<desc>Creates a <placeholder name="name"/></desc>
 	<longdesc>
-		<h2>Token Text Area 2</h2>
+		<h2 id="introduction">Token Text Area 2</h2>
 		<p>This widget changes a text item to a button. It can be comprised of a number of button widgets. As the user types text, the widget parses the text at each keystroke and creates a button when the user types a character that acts as a delimiter (<code>;</code> or <code>,</code>). A user can add the <placeholder name="name"/> widget to a contact list, email list, or another list. The typical use of this widget is composing a number of contacts or phone numbers in a specific area of the screen.</p>
 
-		<h3>Structure</h3>
+		<h2 id="structure">Structure</h2>
 		<p>The widget derives from the jQuery Mobile <a href="//api.jquerymobile.com/textinput">textinput</a> widget and works on an <code>input</code> of type text. Buttons are created from its initial value upon instantiation and if any text is left over it is set as the value of the input. To create a <placeholder name="name"/> widget, add an <code>input</code> element to your markup:</p>
 <pre><code><![CDATA[
 <input type="text" id="email-addresses" data-role="tokentextarea2">
 ]]></code></pre>
 
-		<h3>Keyboard interaction</h3>
+		<h2 id="keyboard">Keyboard interaction</h2>
 		<p>The user may type freely into the input. Whenever she types a delimiter character, the text is tokenized the same way as initially, resulting in new buttons being inserted immediately preceding the input.</p>
 		<p>When the user types Backspace the button nearest the input will be selected in preparation for removal under the following circumstances:
 				<ul>
 					<li>There is at least one button before the input.</li>
-					<li>Pressing Backspace has not resulted in a change in the input's value. That is, the value of the input is equal to the copy maintained in the visibility-hidden span.</li>
+					<li>Pressing Backspace has not resulted in a change in the input's value. That is, the value of the input is equal to the copy maintained in the visibility-hidden span used for calculating the width of the input (see <a href="#layout">below</a>).</li>
 				</ul>
 		</p>
 
-		<h3>Layout and styling</h3>
+		<h2 id="layout">Layout and styling</h2>
 		<p>The buttons are placed side-by-side. They wrap to the next line. The input is placed after the last button and sized such that it fills up the rest of the line. As the user types, the widget ensures that the input has sufficient width for accommodating the text typed. It measures the width of the text by maintaining a copy of the input's value in a visibility-hidden span. If the width of the text exceeds the width of the input, the input width is restored to the textinput widget's default of 100%, causing it to wrap to the next line. The widget is styled with a text cursor, making it appear as a large input. Clicking anywhere inside the widget except on one of the buttons will cause the input to receive focus. This further establishes the widget's appearance of being a large input.</p>
 
-		<h3>Interacting with the buttons</h3>
+		<h2 id="button-interaction">Interacting with the buttons</h2>
 		<p>In addition to being able to remove buttons by pressing Backspace, the user can also click on them. The first click on a button will select it, while the second click will remove it. It is possible to prevent selection of a button by attaching a handler to the widget's <a href="#event-select">select</a> event and preventing default on the event object.</p>
 		<p>Whenever the user types, all buttons are deselected. The deselection is performed only after making sure that the selected button immediately preceding the input is removed in response to a Backspace keypress that does not modify the value of the input (as described above).</p>
 
