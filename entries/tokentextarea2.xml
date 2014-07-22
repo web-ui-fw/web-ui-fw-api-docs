@@ -29,12 +29,33 @@
 		<p>In addition to being able to remove buttons by pressing Backspace, the user can also click on them. The first click on a button will select it, while the second click will remove it. It is possible to prevent selection of a button by attaching a handler to the widget's <a href="#event-select">select</a> event and preventing default on the event object.</p>
 		<p>Whenever the user types, all buttons are deselected. The deselection is performed only after making sure that the selected button immediately preceding the input is removed in response to a Backspace keypress that does not modify the value of the input (as described above).</p>
 
+		<h2 id="synchronization">Synchronizing with another input</h2>
+		<p>The basic <placeholder name="name"/> widget does not progressively enhance an input. This means that you have to use different APIs to access the value typed in by the user depending on whether jQuery Mobile considers the browser it is running on to be grade A or grade B, or whether it avoids all enhancement by considering the browser to be grade C. In the case of grade A and grade B browsers, you must use the <a href="#method-inputText">inputText()</a> method to retrieve the correct value from the input, because its <a href="//api.jquery.com/val/">.val()</a> method does not retrieve any of the buttons.</p>
+		<p>jQuery Mobile does not run on browsers that it detects to be grade C - in most cases these are older browsers. This means that an input marked for enhancement into a <placeholder name="name"/> widget will not be enhanced. It will remain a plain text input. This, in turn, means that you must use the <a href="//api.jquery.com/val/">.val()</a> method to retrieve the correct value from the input, because the <a href="#method-inputText">inputText()</a> method has not been defined on the element.</p>
+		<p>The <a href="#option-master">master</a> option together with the convenience classes <code>ui-tokentextarea2-master</code> and <code>ui-tokentextarea2-slave</code> addresses this discrepancy. To progressively enhance an input into a <placeholder name="name"/>, proceed as follows:</p>
+		<ol>
+			<li>Add two inputs to your markup:
+				<ol>
+					<li>The first input is the one that you will use in your application. It is the input that holds the actual value you wish to retrieve, including all the buttons. You must give this input an <code>id</code> attribute (for example, <code>id="email-addresses"</code>).</li>
+					<li>The second input is enhanced into a <placeholder name="name"/> and has the <code>data-master</code> attribute with its value set to a selector for the first input (for example, <code>data-master="#email-addresses"</code>).</li>
+				</ol>
+			</li>
+			<li>Add class <code>ui-tokentextarea2-master</code> to the first input's <code>data-wrapper-class</code> attribute: <code>data-wrapper-class="ui-tokentextarea2-master"</code>. This will ensure that, whenever the <placeholder name="name"/> widget is created, the master will not be shown.</li>
+			<li>Add class <code>ui-tokentextarea2-slave</code> to the second input's <code>class</code> attribute: <code>class="ui-tokentextarea2-slave</code>. This will ensure that the second input will not be shown on grade C browsers, but will be shown whenever the <placeholder name="name"/> widget is created.</li>
+		</ol>
+		<p>The <placeholder name="name"/> demos provide an example of using the <code>master</code> option and the convenience classes.</p>
   	</longdesc>
 
 	<added>***??????***</added>
 	<options>
 		<xi:include href="../includes/widget-option-disabled.xml" xmlns:xi="http://www.w3.org/2003/XInclude"/>
 		<xi:include href="../includes/widget-option-enhanced.xml" xmlns:xi="http://www.w3.org/2003/XInclude"/>
+		<option name="master" default="null" example-value="#id-of-master">
+			<desc>Indicates that the <placeholder name="name"/> is to update the value of the element identified by the option whenever its own <a href="#method-inputText">inputText()</a> changes. It also indicates that the inputText() of the <placeholder name="name"/> is to be updated whenever the value of the element identified by the option changes. The update is performed in response to a "change" event triggered on the element identified by the option.
+			<p>This option is provided by the <code>widgets/tokentextarea2.sync</code> extension.</p>
+			<p>This option is also exposed as a data attribute: <code>data-master="#id-of-master"</code>.</p>
+			</desc>
+		</option>
 	</options>
 	<events>
 		<xi:include href="../includes/widget-event-create.xml" xmlns:xi="http://www.w3.org/2003/XInclude"/>
