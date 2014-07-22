@@ -44,6 +44,29 @@
 			<li>Add class <code>ui-tokentextarea2-slave</code> to the second input's <code>class</code> attribute: <code>class="ui-tokentextarea2-slave</code>. This will ensure that the second input will not be shown on grade C browsers, but will be shown whenever the <placeholder name="name"/> widget is created.</li>
 		</ol>
 		<p>The <placeholder name="name"/> demos provide an example of using the <code>master</code> option and the convenience classes.</p>
+
+		<xi:include href="../includes/pre-rendered-common.xml" xmlns:xi="http://www.w3.org/2003/XInclude"/>
+		<p>The <placeholder name="name"/> widget has the same structure as the jQuery Mobile <a href="//api.jquerymobile.com/textinput/#providing-pre-rendered-markup">textinput</a> widget with the following additional elements:</p>
+		<ul>
+			<li>In addition to the <code>textinput</code> classes, the wrapper also has the class <code>ui-tokentextarea2</code> and <code>stretched-input</code>.</li>
+			<li>The initial input value must not contain any substrings that can be turned into buttons. If you wish the widget to initially contain buttons, place an anchor for each button before the input. The widget adds a data item to each anchor it creates at key "value". Thus, you must also add the <code>data-value</code> attribute to the anchor to store the substring that the button represents. The button gets the following classes: <code>ui-btn ui-corner-all ui-shadow ui-mini ui-btn-inline</code>.</li>
+			<li>The widget synchronizes the input's value to an internal <code>span</code>. This allows it to measure the width of the text, which, in turn, allows it to calculate at every keystroke whether the text typed by the user has enough room on the current line to display without causing the input to scroll horizontally. You must also add such span to your initial markup: <code>&lt;span class="ui-tokentextarea2-input-shadow"&gt;&lt;/span&gt;</code>.</li>
+			<li>If the initial value of the input is such that portions of it cannot be converted to a button, then you must set those portions as the initial text for the <code>span</code>.</li>
+		</ul>
+		<p>The example below illustrates how to create a pre-rendered <placeholder name="name"/> synchronized to a master input with an initial value that can be partially converted to buttons:</p>
+<pre><code><![CDATA[
+<form>
+	<div class="ui-input-text ui-body-inherit ui-corner-all ui-tokentextarea2-master ui-shadow-inset">
+		<input name="recipients" id="recipients-master" data-enhanced="true" data-wrapper-class="ui-tokentextarea2-master" value="abc@def.com;ghi@j">
+	</div>
+	<div class="ui-input-text ui-body-inherit ui-corner-all ui-tokentextarea2 ui-shadow-inset">
+		<a href="#" class="ui-btn ui-mini ui-corner-all ui-shadow ui-btn-inline" data-value="abc@def.com">abc@def.com</a>
+		<input data-role="tokentextarea2" data-enhanced="true" data-master="#recipients-master" class="ui-tokentextarea2-slave" value="ghi@j">
+		<span class="ui-tokentextarea2-input-shadow">ghi@j</span>
+	</div>
+</form>
+]]></code></pre>
+		<!--<iframe src="/resources/tokentextarea2/example1.html" style="width:100%;height:90px;border:0px"></iframe>-->
   	</longdesc>
 
 	<added>***??????***</added>
