@@ -1,6 +1,7 @@
 # Setting up Wordpress
 
 0. Install Wordpress (preferably via a VirtualHost so the content can start at /)
+   0. Make sure the ServerRoot hosting Wordpress has an .htaccess file containing the URL rewrite rules mentioned in the [jquery-wp-content installation](https://github.com/jquery/jquery-wp-content/blob/master/INSTALL.md#installation). This will make links to resources work the same way as in jQuery Mobile (i.e. /resources/<widgetname>/example1.html).
    0. Set the site title to "Web UI Framework API Documentation"
 0. Copy grunt-wordpress.php from [grunt-wordpress](https://github.com/scottgonzalez/grunt-wordpress) to wp-content/plugins
 0. Copy wp/upload-filters.php to wp-content/plugins
