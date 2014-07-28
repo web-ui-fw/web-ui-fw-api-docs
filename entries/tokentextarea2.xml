@@ -5,10 +5,10 @@
 	<desc>Creates a <placeholder name="name"/></desc>
 	<longdesc>
 		<h2 id="introduction">Token Text Area 2</h2>
-		<p>This widget changes a text item to a button. It can be comprised of a number of button widgets. As the user types text, the widget parses the text at each keystroke and creates a button when the user types a character that acts as a delimiter (<code>;</code> or <code>,</code>). A user can add the <placeholder name="name"/> widget to a contact list, email list, or another list. The typical use of this widget is composing a number of contacts or phone numbers in a specific area of the screen.</p>
+		<p>This widget changes a text item to a button. It can consist of a number of button widgets. As the user types text, the widget parses the text at each keystroke and creates a button when the user types a character that acts as a delimiter (<code>;</code> or <code>,</code>). A user can add the <placeholder name="name"/> widget to a contact list, email list, or another list. The typical use of this widget is composing a number of contacts or phone numbers in a specific area of the screen.</p>
 
 		<h2 id="structure">Structure</h2>
-		<p>The widget derives from the jQuery Mobile <a href="//api.jquerymobile.com/textinput">textinput</a> widget and works on an <code>input</code> of type text. Buttons are created from its initial value upon instantiation and if any text is left over it is set as the value of the input. To create a <placeholder name="name"/> widget, add an <code>input</code> element to your markup:</p>
+		<p>The widget derives from the jQuery Mobile <a href="//api.jquerymobile.com/textinput">textinput</a> widget. It works on all <code>input</code> elements marked with the attribute <code>data-role="<placeholder name="name"/>"</code> except those that are turned into sliders. Buttons are created from its initial value upon instantiation and if any text is left over it is set as the value of the input. To create a <placeholder name="name"/> widget, add an <code>input</code> element to your markup:</p>
 <pre><code><![CDATA[
 <input type="text" id="email-addresses" data-role="tokentextarea2">
 ]]></code></pre>
@@ -32,7 +32,7 @@
 		<h2 id="synchronization">Synchronizing with another input</h2>
 		<p>The basic <placeholder name="name"/> widget does not progressively enhance an input. This means that you have to use different APIs to access the value typed in by the user depending on whether jQuery Mobile considers the browser it is running on to be grade A or grade B, or whether it avoids all enhancement by considering the browser to be grade C. In the case of grade A and grade B browsers, you must use the <a href="#method-inputText">inputText()</a> method to retrieve the correct value from the input, because its <a href="//api.jquery.com/val/">.val()</a> method does not retrieve any of the buttons.</p>
 		<p>jQuery Mobile does not run on browsers that it detects to be grade C - in most cases these are older browsers. This means that an input marked for enhancement into a <placeholder name="name"/> widget will not be enhanced. It will remain a plain text input. This, in turn, means that you must use the <a href="//api.jquery.com/val/">.val()</a> method to retrieve the correct value from the input, because the <a href="#method-inputText">inputText()</a> method has not been defined on the element.</p>
-		<p>The <a href="#option-master">master</a> option together with the convenience classes <code>ui-tokentextarea2-master</code> and <code>ui-tokentextarea2-slave</code> addresses this discrepancy. To progressively enhance an input into a <placeholder name="name"/>, proceed as follows:</p>
+		<p>The <a href="#option-master">master</a> option procided by the <code>sync</code> extension, together with the convenience classes <code>ui-tokentextarea2-master</code> and <code>ui-tokentextarea2-slave</code> addresses this discrepancy. To progressively enhance an input into a <placeholder name="name"/>, proceed as follows:</p>
 		<ol>
 			<li>Add two inputs to your markup:
 				<ol>
