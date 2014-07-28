@@ -45,6 +45,11 @@
 		</ol>
 		<p>The <placeholder name="name"/> demos provide an example of using the <code>master</code> option and the convenience classes.</p>
 
+		<h2 id="grouping">Grouping</h2>
+		<p>The <code>grouping</code> extension allows you to display a summary when the widget does not have the focus. It provides the option <code>description</code> which contains a string to be displayed when the widget does not have the focus. The string may contain the pattern <code>{0}</code> which will be replaced by the number of buttons currently present.</p>
+		<p>The extension also provides the public method <a href="#method-focusOut">focusOut()</a> for placing the widget into a state where it displays no input and no buttons, but only the summary.</p>
+		<p>To restore the widget to its default look, you can call the public method <a href="#method-focusIn">focusIn()</a>. This method is called automatically whenever the widget receives focus.</p>
+
 		<xi:include href="../includes/pre-rendered-common.xml" xmlns:xi="http://www.w3.org/2003/XInclude"/>
 		<p>The <placeholder name="name"/> widget has the same structure as the jQuery Mobile <a href="//api.jquerymobile.com/textinput/#providing-pre-rendered-markup">textinput</a> widget with the following additional elements:</p>
 		<ul>
@@ -105,6 +110,16 @@
 			</signature>
 		</method>
 		<xi:include href="../includes/widget-method-destroy.xml" xmlns:xi="http://www.w3.org/2003/XInclude"/>
+		<method name="focusIn">
+			<desc>This method is provided by the <code>widgets/tokentextarea2.grouping</code> extension.
+				<p>Restores the default look of the widget. The input and its buttons become visible and the summary is hidden.</p>
+			</desc>
+		</method>
+		<method name="focusOut">
+			<desc>This method is provided by the <code>widgets/tokentextarea2.grouping</code> extension.
+				<p>Hides the input and any buttons, and displays the summary.</p>
+			</desc>
+		</method>
 		<method name="inputText">
 			<signature return="String">
 				<desc>Gets the string from the widget. The string consists of the <code>;</code>-separated list of button values, followed by the value of the input.</desc>
