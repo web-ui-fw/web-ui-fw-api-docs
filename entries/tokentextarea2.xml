@@ -57,17 +57,21 @@
 			<li>The initial input value must not contain any substrings that can be turned into buttons. If you wish the widget to initially contain buttons, place an anchor for each button before the input. The widget adds a data item to each anchor it creates at key "value". Thus, you must also add the <code>data-value</code> attribute to the anchor to store the substring that the button represents. The button gets the following classes: <code>ui-btn ui-corner-all ui-shadow ui-tokentextarea2-button ui-btn-inline</code>.</li>
 			<li>The widget synchronizes the input's value to an internal <code>span</code>. This allows it to measure the width of the text, which, in turn, allows it to calculate at every keystroke whether the text typed by the user has enough room on the current line to display without causing the input to scroll horizontally. You must also add such span to your initial markup: <code>&lt;span class="ui-tokentextarea2-input-shadow"&gt;&lt;/span&gt;</code>.</li>
 			<li>If the initial value of the input is such that portions of it cannot be converted to a button, then you must set those portions as the initial text for the <code>span</code>.</li>
+			<li>If your build includes the <code>grouping</code> extension, you must also add a <code>span</code> for the summary.</li>
+			<li>If your build includes the <code>link</code> extension and you wish to have a link button, add the class <code>ui-input-has-clear</code> to the wrapper <code>div</code> and create an anchor with the link as the last child of the wrapper. The link must have at least class <code>ui-input-clear</code>. It is recommended that you create a small circular button with only an icon and no text.</li>
 		</ul>
-		<p>The example below illustrates how to create a pre-rendered <placeholder name="name"/> synchronized to a master input with an initial value that can be partially converted to buttons:</p>
+		<p>The example below illustrates how to create a pre-rendered <placeholder name="name"/> synchronized to a master input with an initial value that can be partially converted to buttons, a summary span, and a link button:</p>
 <pre><code><![CDATA[
 <form>
 	<div class="ui-input-text ui-body-inherit ui-corner-all ui-tokentextarea2-master ui-shadow-inset">
 		<input name="recipients" id="recipients-master" data-enhanced="true" data-wrapper-class="ui-tokentextarea2-master" value="abc@def.com;ghi@j">
 	</div>
-	<div class="ui-input-text ui-body-inherit ui-corner-all ui-tokentextarea2 ui-shadow-inset">
+	<div class="ui-input-text ui-body-inherit ui-corner-all ui-tokentextarea2 ui-input-has-clear ui-shadow-inset">
+		<span class="ui-tokentextarea2-summary">+ 1</span>
 		<a href="#" class="ui-btn ui-mini ui-corner-all ui-shadow ui-btn-inline" data-value="abc@def.com">abc@def.com</a>
 		<input data-role="tokentextarea2" data-enhanced="true" data-master="#recipients-master" class="ui-tokentextarea2-slave" value="ghi@j">
 		<span class="ui-tokentextarea2-input-shadow">ghi@j</span>
+		<a href="#" class="ui-btn ui-corner-all ui-shadow ui-icon-grid ui-btn-icon-notext ui-input-clear">Address book</a>
 	</div>
 </form>
 ]]></code></pre>
@@ -84,6 +88,21 @@
 		</option>
 		<xi:include href="../includes/widget-option-disabled.xml" xmlns:xi="http://www.w3.org/2003/XInclude"/>
 		<xi:include href="../includes/widget-option-enhanced.xml" xmlns:xi="http://www.w3.org/2003/XInclude"/>
+		<option name="link" default="null" example-value="#id-of-link-button">
+			<desc>Indicates which element is to be used as the widget's link button. Setting this option to a <code>null</code> value will remove the link button.
+				<p>This option is provided by the <code>widgets/tokentextarea2.link</code> extension.</p>
+				<p>This option is also exposed as a data attribute: <code>data-link="#id-of-link-button"</code>.</p>
+			</desc>
+			<type name="Selector">
+				<desc>Indicates that the link button is to be retrieved from the DOM and placed inside the <placeholder name="name"/> widget.</desc>
+			</type>
+			<type name="Element">
+				<desc>Provides the element to place inside the <placeholder name="name"/> widget. The class <code>ui-input-clear</code> is added to the element.</desc>
+			</type>
+			<type name="jQuery">
+				<desc>Provides a jQuery collection object containing elements to place inside the <placeholder name="name"/> widget to be used as the link button. The class <code>ui-input-clear</code> is added to the elements in the collection. The widget is designed for a single link button element.</desc>
+			</type>
+		</option>
 		<option name="master" default="null" example-value="#id-of-master">
 			<desc>Indicates that the <placeholder name="name"/> is to update the value of the element identified by the option whenever its own <a href="#method-inputText">inputText()</a> changes. It also indicates that the inputText() of the <placeholder name="name"/> is to be updated whenever the value of the element identified by the option changes. The update is performed in response to a "change" event triggered on the element identified by the option.
 			<p>This option is provided by the <code>widgets/tokentextarea2.sync</code> extension.</p>
