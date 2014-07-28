@@ -89,7 +89,7 @@
 		<xi:include href="../includes/widget-option-disabled.xml" xmlns:xi="http://www.w3.org/2003/XInclude"/>
 		<xi:include href="../includes/widget-option-enhanced.xml" xmlns:xi="http://www.w3.org/2003/XInclude"/>
 		<option name="link" default="null" example-value="#id-of-link-button">
-			<desc>Indicates which element is to be used as the widget's link button. Setting this option to a <code>null</code> value will remove the link button.
+			<desc>Indicates which element is to be used as the widget's link button. Setting this option to a <code>null</code> value will remove the link button. If an element is specified either by passing in directly a DOM element or a jQuery collection object, or by setting the value of the option to a jQuery selector, then the widget will add the class <code>ui-input-clear</code> to the element and the class <code>ui-input-has-clear</code> to the <placeholder name="name"/> widget's wrapper.
 				<p>This option is provided by the <code>widgets/tokentextarea2.link</code> extension.</p>
 				<p>This option is also exposed as a data attribute: <code>data-link="#id-of-link-button"</code>.</p>
 			</desc>
@@ -97,10 +97,10 @@
 				<desc>Indicates that the link button is to be retrieved from the DOM and placed inside the <placeholder name="name"/> widget.</desc>
 			</type>
 			<type name="Element">
-				<desc>Provides the element to place inside the <placeholder name="name"/> widget. The class <code>ui-input-clear</code> is added to the element.</desc>
+				<desc>Provides the element to place inside the <placeholder name="name"/> widget.</desc>
 			</type>
 			<type name="jQuery">
-				<desc>Provides a jQuery collection object containing elements to place inside the <placeholder name="name"/> widget to be used as the link button. The class <code>ui-input-clear</code> is added to the elements in the collection. The widget is designed for a single link button element.</desc>
+				<desc>Provides a jQuery collection object containing elements to place inside the <placeholder name="name"/> widget to be used as the link button. The widget is designed for a single link button element.</desc>
 			</type>
 		</option>
 		<option name="master" default="null" example-value="#id-of-master">
