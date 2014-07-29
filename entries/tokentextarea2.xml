@@ -99,7 +99,7 @@
 				<argument name="value" type="String"/>
 			</signature>
 			<signature example-params='"my.name@example.com", 12'>
-				<desc>Insert a new button with the specified value at the specified zero-based index among the existing tokens. The button at that index and all buttons following it will move up by one. If the index specified is out of bounds, the button will be inserted immediately before the input.</desc>
+				<desc>Insert a new button with the specified value at the specified zero-based index among the existing buttons. The button at that index and all buttons following it will move up by one. If the index specified is out of bounds, the button will be inserted immediately before the input.</desc>
 				<argument name="value" type="String"/>
 				<argument name="index" type="Number"/>
 			</signature>
@@ -117,11 +117,11 @@
 			</signature>
 		</method>
 		<method name="length" return="Number">
-			<desc>Returns the number of the tokens.</desc>
+			<desc>Returns the number of the buttons.</desc>
 		</method>
 		<method name="remove">
 			<signature>
-				<desc>Removes all tokens.</desc>
+				<desc>Removes all buttons.</desc>
 			</signature>
 			<signature example-params="12">
 				<desc>Remove the button at the specified index.</desc>
