@@ -46,7 +46,7 @@
 		<p>The <placeholder name="name"/> demos provide an example of using the <code>master</code> option and the convenience classes.</p>
 
 		<h2 id="grouping">Grouping</h2>
-		<p>The <code>grouping</code> extension allows you to display a summary when the widget does not have the focus. It provides the option <code>description</code> which contains a string to be displayed when the widget does not have the focus. The string may contain the pattern <code>{0}</code> which will be replaced by the number of buttons currently present.</p>
+		<p>The <code>grouping</code> extension allows you to display a summary when the widget does not have the focus. It provides the option <a href="#option-description">description</a> which contains a string to be displayed when the widget does not have the focus. The string may contain the pattern <code>{0}</code> which will be replaced by the number of buttons currently present.</p>
 		<p>The extension also provides the public method <a href="#method-focusOut">focusOut()</a> for placing the widget into a state where it displays no input and no buttons, but only the summary.</p>
 		<p>To restore the widget to its default look, you can call the public method <a href="#method-focusIn">focusIn()</a>. This method is called automatically whenever the widget receives focus.</p>
 
@@ -76,6 +76,12 @@
 
 	<added>***??????***</added>
 	<options>
+		<option name="description" type="string" default='"+ {0}"' example-value='"{0} recipients"'>
+			<desc>A string to display whenever <a href="#method-focusOut">focusOut()</a> is called. If there are no buttons, an empty string will be shown. The value of this option may contain the pattern <code>{0}</code>. This will be replaced by a number indicating the number of buttons in the widget.
+			<p>This option is provided by the <code>widgets/tokentextarea2.grouping</code> extension.</p>
+			<p>This option is also exposed as a data attribute: <code>data-description="{0} recipients"</code>.</p>
+			</desc>
+		</option>
 		<xi:include href="../includes/widget-option-disabled.xml" xmlns:xi="http://www.w3.org/2003/XInclude"/>
 		<xi:include href="../includes/widget-option-enhanced.xml" xmlns:xi="http://www.w3.org/2003/XInclude"/>
 		<option name="master" default="null" example-value="#id-of-master">
