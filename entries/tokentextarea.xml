@@ -2,132 +2,202 @@
 <?xml-stylesheet type="text/xsl" href="../entries2html.xsl" ?>
 <entry name="tokentextarea" namespace="fn" type="widget" widgetnamespace="mobile" event-prefix="tokentextarea">
 	<title>Tokentextarea Widget</title>
-	<desc>Creates a tokentextarea</desc>
+	<desc>Creates a <placeholder name="name"/></desc>
 	<longdesc>
-		<h3>Token Text Area</h3>
-		<p>Tokentextarea changes a text item to a button. It can be comprised of a number of button widgets. When a user types text and the text gets a specific event to change from a text to a button, the input text is changed to a Tokentextarea widget. A user can add the Tokentextarea widget to a contact list, email list, or another list. The typical use of this widget is composing a number of contacts or phone numbers in a specific area of the screen.</p>
+		<h2 id="introduction">Token Text Area 2</h2>
+		<p>This widget changes a text item to a button. It can consist of a number of button widgets. As the user types text, the widget parses the text at each keystroke and creates a button when the user types a character that acts as a delimiter (<code>;</code> or <code>,</code>). A user can add the <placeholder name="name"/> widget to a contact list, email list, or another list. The typical use of this widget is composing a number of contacts or phone numbers in a specific area of the screen.</p>
 
-<pre><code>
-&lt;div data-role=&quot;tokentextarea&quot;&gt;
-	&lt;h1&gt;Token Text Area&lt;/h1&gt;
-&lt;/div&gt;
-</code></pre>
+		<h2 id="structure">Structure</h2>
+		<p>The widget derives from the jQuery Mobile <a href="//api.jquerymobile.com/textinput">textinput</a> widget. It works on all <code>input</code> elements marked with the attribute <code>data-role="<placeholder name="name"/>"</code> except those that are turned into sliders. Buttons are created from its initial value upon instantiation and if any text is left over it is set as the value of the input. To create a <placeholder name="name"/> widget, add an <code>input</code> element to your markup:</p>
+<pre><code><![CDATA[
+<input type="text" id="email-addresses" data-role="tokentextarea">
+]]></code></pre>
 
+		<h2 id="keyboard">Keyboard interaction</h2>
+		<p>The user may type freely into the input. Whenever she types a delimiter character, the text is tokenized the same way as initially, resulting in new buttons being inserted immediately preceding the input.</p>
+		<p>When the user types Backspace the button nearest the input will be selected in preparation for removal under the following circumstances:
+				<ul>
+					<li>There is at least one button before the input.</li>
+					<li>Pressing Backspace has not resulted in a change in the input's value. That is, the value of the input is equal to the copy maintained in the visibility-hidden span used for calculating the width of the input (see <a href="#layout">below</a>).</li>
+				</ul>
+		</p>
+
+		<h2 id="layout">Layout and styling</h2>
+		<p>The buttons are placed side-by-side. They wrap to the next line. The input is placed after the last button and sized such that it fills up the rest of the line. As the user types, the widget ensures that the input has sufficient width for accommodating the text typed. It measures the width of the text by maintaining a copy of the input's value in a visibility-hidden span. If the width of the text exceeds the width of the input, the input width is restored to the textinput widget's default of 100%, causing it to wrap to the next line. The widget is styled with a text cursor, making it appear as a large input. Clicking anywhere inside the widget except on one of the buttons will cause the input to receive focus. This further establishes the widget's appearance of being a large input.</p>
+
+		<h2 id="button-interaction">Interacting with the buttons</h2>
+		<p>In addition to being able to remove buttons by pressing Backspace, the user can also click on them. The first click on a button will select it, while the second click will remove it. It is possible to prevent selection of a button by attaching a handler to the widget's <a href="#event-select">select</a> event and preventing default on the event object.</p>
+		<p>Whenever the user types, all buttons are deselected. The deselection is performed only after making sure that the selected button immediately preceding the input is removed in response to a Backspace keypress that does not modify the value of the input (as described above).</p>
+
+		<h2 id="synchronization">Synchronizing with another input</h2>
+		<p>The basic <placeholder name="name"/> widget does not progressively enhance an input. This means that you have to use different APIs to access the value typed in by the user depending on whether jQuery Mobile considers the browser it is running on to be grade A or grade B, or whether it avoids all enhancement by considering the browser to be grade C. In the case of grade A and grade B browsers, you must use the <a href="#method-inputText">inputText()</a> method to retrieve the correct value from the input, because its <a href="//api.jquery.com/val/">.val()</a> method does not retrieve any of the buttons.</p>
+		<p>jQuery Mobile does not run on browsers that it detects to be grade C - in most cases these are older browsers. This means that an input marked for enhancement into a <placeholder name="name"/> widget will not be enhanced. It will remain a plain text input. This, in turn, means that you must use the <a href="//api.jquery.com/val/">.val()</a> method to retrieve the correct value from the input, because the <a href="#method-inputText">inputText()</a> method has not been defined on the element.</p>
+		<p>The <a href="#option-master">master</a> option provided by the <code>sync</code> extension, together with the convenience classes <code>ui-tokentextarea-master</code> and <code>ui-tokentextarea-slave</code> addresses this discrepancy. To progressively enhance an input into a <placeholder name="name"/>, proceed as follows:</p>
+		<ol>
+			<li>Add two inputs to your markup:
+				<ol>
+					<li>The first input is the one that you will use in your application. It is the input that holds the actual value you wish to retrieve, including all the buttons. You must give this input an <code>id</code> attribute (for example, <code>id="email-addresses"</code>).</li>
+					<li>The second input is enhanced into a <placeholder name="name"/> and has the <code>data-master</code> attribute with its value set to a selector for the first input (for example, <code>data-master="#email-addresses"</code>).</li>
+				</ol>
+			</li>
+			<li>Add class <code>ui-tokentextarea-master</code> to the first input's <code>data-wrapper-class</code> attribute: <code>data-wrapper-class="ui-tokentextarea-master"</code>. This will ensure that, whenever the <placeholder name="name"/> widget is created, the master will not be shown.</li>
+			<li>Add class <code>ui-tokentextarea-slave</code> to the second input's <code>class</code> attribute: <code>class="ui-tokentextarea-slave</code>. This will ensure that the second input will not be shown on grade C browsers, but will be shown whenever the <placeholder name="name"/> widget is created.</li>
+		</ol>
+		<p>The <placeholder name="name"/> demos provide an example of using the <code>master</code> option and the convenience classes.</p>
+
+		<h2 id="grouping">Grouping</h2>
+		<p>The <code>grouping</code> extension allows you to display a summary when the widget does not have the focus. It provides the option <a href="#option-description">description</a> which contains a string to be displayed when the widget does not have the focus. The string may contain the pattern <code>{0}</code> which will be replaced by the number of buttons currently present.</p>
+		<p>The extension also provides the public method <a href="#method-focusOut">focusOut()</a> for placing the widget into a state where it displays no input and no buttons, but only the summary.</p>
+		<p>To restore the widget to its default look, you can call the public method <a href="#method-focusIn">focusIn()</a>. This method is called automatically whenever the widget receives focus.</p>
+
+		<h2 id="link">Adding a link button</h2>
+		<p>You can specify that an element be added to the <placeholder name="name"/>'s wrapper via the <a href="#option-link">link</a> option. The widget's resulting style will be identical to the styling of a <code>textinput</code> widget which has the <code>clearBtn</code> option set to true. Thus, this option is incompatible with the <code>textinput</code> <code>clearBtn</code> option.</p>
+
+		<xi:include href="../includes/pre-rendered-common.xml" xmlns:xi="http://www.w3.org/2003/XInclude"/>
+		<p>The <placeholder name="name"/> widget has the same structure as the jQuery Mobile <a href="//api.jquerymobile.com/textinput/#providing-pre-rendered-markup">textinput</a> widget with the following additional elements:</p>
+		<ul>
+			<li>In addition to the <code>textinput</code> classes, the wrapper also has the class <code>ui-tokentextarea</code> and <code>stretched-input</code>.</li>
+			<li>The initial input value must not contain any substrings that can be turned into buttons. If you wish the widget to initially contain buttons, place an anchor for each button before the input. The widget adds a data item to each anchor it creates at key "value". Thus, you must also add the <code>data-value</code> attribute to the anchor to store the substring that the button represents. The button gets the following classes: <code>ui-btn ui-corner-all ui-shadow ui-tokentextarea-button ui-btn-inline</code>.</li>
+			<li>The widget synchronizes the input's value to an internal <code>span</code>. This allows it to measure the width of the text, which, in turn, allows it to calculate at every keystroke whether the text typed by the user has enough room on the current line to display without causing the input to scroll horizontally. You must also add such span to your initial markup: <code>&lt;span class="ui-tokentextarea-input-shadow"&gt;&lt;/span&gt;</code>.</li>
+			<li>If the initial value of the input is such that portions of it cannot be converted to a button, then you must set those portions as the initial text for the <code>span</code>.</li>
+			<li>If your build includes the <code>grouping</code> extension, you must also add a <code>span</code> for the summary.</li>
+			<li>If your build includes the <code>link</code> extension and you wish to have a link button, add the class <code>ui-input-has-clear</code> to the wrapper <code>div</code> and create an anchor with the link as the last child of the wrapper. The link must have at least class <code>ui-input-clear</code>. It is recommended that you create a small circular button with only an icon and no text.</li>
+		</ul>
+		<p>The example below illustrates how to create a pre-rendered <placeholder name="name"/> synchronized to a master input with an initial value that can be partially converted to buttons, a summary span, and a link button:</p>
+<pre><code><![CDATA[
+<form>
+	<div class="ui-input-text ui-body-inherit ui-corner-all ui-tokentextarea-master ui-shadow-inset">
+		<input name="recipients" id="recipients-master" data-enhanced="true" data-wrapper-class="ui-tokentextarea-master" value="abc@def.com;ghi@j">
+	</div>
+	<div class="ui-input-text ui-body-inherit ui-corner-all ui-tokentextarea ui-input-has-clear ui-shadow-inset">
+		<span class="ui-tokentextarea-summary">+ 1</span>
+		<a href="#" class="ui-btn ui-mini ui-corner-all ui-shadow ui-btn-inline" data-value="abc@def.com">abc@def.com</a>
+		<input data-role="tokentextarea" data-enhanced="true" data-master="#recipients-master" class="ui-tokentextarea-slave" value="ghi@j">
+		<span class="ui-tokentextarea-input-shadow">ghi@j</span>
+		<a href="#" class="ui-btn ui-corner-all ui-shadow ui-icon-grid ui-btn-icon-notext ui-input-clear">Address book</a>
+	</div>
+</form>
+]]></code></pre>
+		<iframe src="/resources/tokentextarea/example1.html" style="width:100%;height:90px;border:0px"></iframe>
   	</longdesc>
 
-	<added>0.2.0</added>
+	<added>1.0.0</added>
 	<options>
-		<option name="label" default="To : " example-value="false">
-			<desc>
-				<p>This option is to provide a label for a user-guide:<code>data-label="To : "</code>.</p>
+		<option name="description" type="string" default='"+ {0}"' example-value='"{0} recipients"'>
+			<desc>A string to display whenever <a href="#method-focusOut">focusOut()</a> is called. If there are no buttons, an empty string will be shown. The value of this option may contain the pattern <code>{0}</code>. This will be replaced by a number indicating the number of buttons in the widget.
+			<p>This option is provided by the <code>widgets/tokentextarea.grouping</code> extension.</p>
+			<p>This option is also exposed as a data attribute: <code>data-description="{0} recipients"</code>.</p>
 			</desc>
-			<type name="String" />
 		</option>
-		<option name="description" default="+ {0}" example-value="fade">
-			<desc>Manage the message format. The message is displayed when the widget status changes to 'focus out'. : <code>data-description="+ {0}"</code>.
+		<xi:include href="../includes/widget-option-disabled.xml" xmlns:xi="http://www.w3.org/2003/XInclude"/>
+		<xi:include href="../includes/widget-option-enhanced.xml" xmlns:xi="http://www.w3.org/2003/XInclude"/>
+		<option name="link" default="null" example-value='"#id-of-link-button"'>
+			<desc>Indicates which element is to be used as the widget's link button. Setting this option to a <code>null</code> value will remove the link button. If an element is specified either by passing in directly a DOM element or a jQuery collection object, or by setting the value of the option to a jQuery selector, then the widget will add the class <code>ui-input-clear</code> to the element and the class <code>ui-input-has-clear</code> to the <placeholder name="name"/> widget's wrapper. The element will be appended to the <placeholder name="name"/>'s wrapper.
+				<p>This option is provided by the <code>widgets/tokentextarea.link</code> extension.</p>
+				<p>This option is also exposed as a data attribute: <code>data-link="#id-of-link-button"</code>.</p>
 			</desc>
-			<type name="String" />
+			<type name="htmlString">
+				<desc>An HTML snippet to be used as the link button.</desc>
+			</type>
+			<type name="Selector">
+				<desc>Indicates that the link button is to be retrieved from the DOM and placed inside the <placeholder name="name"/> widget.</desc>
+			</type>
+			<type name="Element">
+				<desc>Provides the element to place inside the <placeholder name="name"/> widget.</desc>
+			</type>
+			<type name="jQuery">
+				<desc>Provides a jQuery collection object containing elements to place inside the <placeholder name="name"/> widget to be used as the link button. The widget is designed for a single link button element.</desc>
+			</type>
 		</option>
-		<option name="link" default="null" example-value="false">
-			<desc>Set the ID of the page to link, like the contact. : <code>data-link="pageId"</code>.
+		<option name="master" default="null" example-value="#id-of-master">
+			<desc>Indicates that the <placeholder name="name"/> is to update the value of the element identified by the option whenever its own <a href="#method-inputText">inputText()</a> changes. It also indicates that the inputText() of the <placeholder name="name"/> is to be updated whenever the value of the element identified by the option changes. The update is performed in response to a "change" event triggered on the element identified by the option.
+			<p>This option is provided by the <code>widgets/tokentextarea.sync</code> extension.</p>
+			<p>This option is also exposed as a data attribute: <code>data-master="#id-of-master"</code>.</p>
 			</desc>
-			<type name="String" />
 		</option>
 	</options>
 	<events>
-		<event name="create">
-			<desc>Triggered when a tokentextarea is created
-			</desc>
-			<argument name="event" type="Event">
-				<desc></desc>
-			</argument>
-			<argument name="ui" type="Object">
-				<desc></desc>
-			</argument>
-		</event>
+		<xi:include href="../includes/widget-event-create.xml" xmlns:xi="http://www.w3.org/2003/XInclude"/>
 		<event name="select">
-			<desc>Triggered when a button is selected
-			</desc>
-			<argument name="event" type="Event">
-				<desc></desc>
-			</argument>
+			<desc>Triggered when a button is selected. Preventing default will prevent selection of the button.</desc>
+			<argument name="event" type="Event"/>
 			<argument name="ui" type="Object">
-				<desc></desc>
+				<property name="value" type="string">
+					<desc>The value associated with the button.</desc>
+				</property>
 			</argument>
 		</event>
 	</events>
 	<methods>
-		<method name="destroy">
-			<desc>destroy a tokentextarea (Remove all of the new DOM elements for the current widget that you created.)
-			</desc>
-		</method>
-		<method name="inputText" example-params="options">
-			<desc>If no argument exists, gets the string from the input box. If the argument exists, sets the string to the input box.
-			</desc>
-				<argument name="options" type="Object">
-					<property name="text" default=''>
-						<desc>The text ........... </desc>
-						<type name="String"/>
-					</property>
-				</argument>
-		</method>
-		<method name="select">
-			<desc>If no argument exists, gets a string of the selected block. If any button isn't selected on a tokentextarea widget, this method returns "null" value. When a user call this method with an argument which is a number type, this method selects the button which is matched with the argument.
-			</desc>
-				<argument name="options" type="Object">
-					<property name="index" default=''>
-						<desc>The index ........... </desc>
-						<type name="Integer"/>
-					</property>
-				</argument>
-		</method>
 		<method name="add">
-			<desc>If second argument does not exist, will insert to a new button at last position. Insert a new button at indexed position. The position is decided by the second argument. "index of position" means that the position of inserting a new button is decided by the second argument on "add" method. For example, if a user call the method like this "add("Tizen", 2)", new button labeled "Tizen" will be inserted on the third position.
-			</desc>
-				<argument name="options" type="Object">
-					<property name="text" default=''>
-						<desc>The text ........... </desc>
-						<type name="String"/>
-					</property>
-					<property name="index" default=''>
-						<desc>The index ........... </desc>
-						<type name="Integer"/>
-					</property>
-				</argument>
+			<signature example-params='"my.name@example.com"'>
+				<desc>Insert a new button with the specified value immediately before the input.</desc>
+				<argument name="value" type="String"/>
+			</signature>
+			<signature example-params='"my.name@example.com", 12'>
+				<desc>Insert a new button with the specified value at the specified zero-based index among the existing buttons. The button at that index and all buttons following it will move up by one. If the index specified is out of bounds, the button will be inserted immediately before the input.</desc>
+				<argument name="value" type="String"/>
+				<argument name="index" type="Number"/>
+			</signature>
 		</method>
-		<method name="remove">
-			<desc>If no argument exists, all buttons are removed. Remove a button at indexed position. The position is decided by the second argument. (index: index of button)
-			</desc>
-				<argument name="options" type="Object">
-					<property name="index" default=''>
-						<desc>The index ........... </desc>
-						<type name="Integer"/>
-					</property>
-				</argument>
-		</method>
-		<method name="length">
-			<desc>Gets the number of the buttons.
-			</desc>
-		</method>
+		<xi:include href="../includes/widget-method-destroy.xml" xmlns:xi="http://www.w3.org/2003/XInclude"/>
 		<method name="focusIn">
-			<desc>Changes the focus status to 'focus in'. The status is able to manage a widget. 'Manage' means that user can add or remove a button.
+			<desc>This method is provided by the <code>widgets/tokentextarea.grouping</code> extension.
+				<p>Restores the default look of the widget. The input and its buttons become visible and the summary is hidden.</p>
 			</desc>
 		</method>
 		<method name="focusOut">
-			<desc>Changes the focus status to 'focus out'. The status is not able to manage a widget. All buttons that contained in the widget are removed and summarized message is displayed.
+			<desc>This method is provided by the <code>widgets/tokentextarea.grouping</code> extension.
+				<p>Hides the input and any buttons, and displays the summary.</p>
 			</desc>
+		</method>
+		<method name="inputText">
+			<signature return="String">
+				<desc>Gets the string from the widget. The string consists of the <code>;</code>-separated list of button values, followed by the value of the input.</desc>
+			</signature>
+			<signature example-params='"my.name@example.com; your.name@"'>
+				<desc>Sets the value of the widget. All existing buttons are removed, the argument is tokenized, new buttons are created, and the leftover string is set as the input's value.</desc>
+				<argument name="text" type="String">
+					<desc>The new value the widget is to have.</desc>
+				</argument>
+			</signature>
+		</method>
+		<method name="length" return="Number">
+			<desc>Returns the number of the buttons.</desc>
+		</method>
+		<method name="remove">
+			<signature>
+				<desc>Removes all buttons.</desc>
+			</signature>
+			<signature example-params="12">
+				<desc>Remove the button at the specified index.</desc>
+				<argument name="index" type="Number"/>
+			</signature>
+		</method>
+		<method name="select">
+			<signature return="String">
+				<desc>The values of the selected buttons are returned <code>;</code>-separated in a string.</desc>
+			</signature>
+			<signature return="Null">
+				<desc>If no buttons are selected, <code>null</code> is returned.</desc>
+			</signature>
+			<signature example-params="12">
+				<argument name="index" type="Number"/>
+				<desc>Unconditionally selects the button at the zero-based index passed as the parameter. The <a href="#event-select">select</a> event is not triggered.</desc>
+			</signature>
 		</method>
 	</methods>
 	<example>
-		<desc>A basic example of a page with tokentextarea.</desc>
+		<desc>A basic example of a page with a <placeholder name="name"/>.</desc>
 		<html><![CDATA[
 	<div data-role="page">
 		<div data-role="header">
 			<h1>Web UI Framework Example</h1>
 		</div>
 		<div class="ui-content">
-			<div data-role="tokentextarea">
-			</div>
+			<form>
+				<input data-role="tokentextarea">
+			</form>
 		</div>
 	</div>
 ]]></html>
