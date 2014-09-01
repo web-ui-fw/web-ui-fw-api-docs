@@ -6,37 +6,38 @@
 	<longdesc>
 		<h3>Virtualgrid</h3>
 		<p>Displays an array of items tiled horizontally and vertically. The user can pan the list horizontally or vertically.</p>
-		<p>Note</p>
-		<p>You want to use a data on different domain server, you need to check whether to support CORS(Cross Origin Resources Sharing) in the server. </p>
-		<p>If the server does not support CORS, virtualgrid would not work properly.</p>
+		<p><strong>Note:</strong></p>
+		<p>If you want to use data on different domain server, you need to check whether to support CORS(Cross Origin Resources Sharing) on the server. </p>
+		<p>If the server does not support CORS, <placeholder name="name"/> will not work properly.</p>
   	</longdesc>
 
 	<added>0.2.0</added>
 	<options>
-		<option name="temlate" default="''">
+		<option name="template" default='""'>
 			<desc>The template.</desc>
 			<type name="String" />
 		</option>
-		<option name="direction" default="y" example-value="x">
-			<desc>The axis along which the panning will take place. (note) Virtualgrid does not support both directions.</desc>
+		<option name="direction" default='"y"' example-value='"x"'>
+			<desc>The axis along which the panning will take place. <strong>Note:</strong> <placeholder name="name"/> does not support both directions.</desc>
 			<type name="String" />
 		</option>
 		<option name="repository" default="null" example-value="../data.json">
 			<desc></desc>
 			<type name="String" />
 		</option>
-		<option name="dataType" default="json" example-value="json">
+		<option name="dataType" default='"json"' example-value='"xml"'>
 			<desc>This attribute indicates the type of the referenced data. It supports 'xml' or 'json'.</desc>
 			<type name="String" />
 		</option>
-		<option name="replaceHelper" default="null" example-value="replaceHelper">
-			<desc>If user want to process more efficiently what replacing DOM, User should define a function and set a function name to this attribute.</desc>
+		<option name="replaceHelper" default="null" example-value='"replaceHelper"'>
+			<desc>If you wish to use a custom function for manipulating the DOM more efficiently, define a named function on the <code>window</code> object to do so, and set the name of the function as the value of this option.
+			<p>This function is used during scrolling and sizing to move rows of icons.</p></desc>
 			<type name="String" />
 		</option>
 	</options>
 	<events>
 		<event name="create">
-			<desc>Triggered when a virtualgrid widget is created.</desc>
+			<desc>Triggered when a <placeholder name="name"/> widget is created.</desc>
 			<argument name="event" type="Event">
 				<desc></desc>
 			</argument>
@@ -63,7 +64,7 @@
 		</method>
 	</methods>
 	<example>
-		<desc>A basic example of a page with a virtualgrid</desc>
+		<desc>A basic example of a page with a <placeholder name="name"/></desc>
 		<html><![CDATA[
 	<div data-role="page">
 		<div data-role="header">
