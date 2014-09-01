@@ -4,7 +4,7 @@
 	<title>Tokentextarea Widget</title>
 	<desc>Creates a <placeholder name="name"/></desc>
 	<longdesc>
-		<h2 id="introduction">Token Text Area 2</h2>
+		<h2 id="introduction">Token Text Area</h2>
 		<p>This widget changes a text item to a button. It can consist of a number of button widgets. As the user types text, the widget parses the text at each keystroke and creates a button when the user types a character that acts as a delimiter (<code>;</code> or <code>,</code>). A user can add the <placeholder name="name"/> widget to a contact list, email list, or another list. The typical use of this widget is composing a number of contacts or phone numbers in a specific area of the screen.</p>
 
 		<h2 id="structure">Structure</h2>
@@ -109,7 +109,7 @@
 				<desc>Provides a jQuery collection object containing elements to place inside the <placeholder name="name"/> widget to be used as the link button. The widget is designed for a single link button element.</desc>
 			</type>
 		</option>
-		<option name="master" default="null" example-value="#id-of-master">
+		<option name="master" default="null" example-value='"#id-of-master"'>
 			<desc>Indicates that the <placeholder name="name"/> is to update the value of the element identified by the option whenever its own <a href="#method-inputText">inputText()</a> changes. It also indicates that the inputText() of the <placeholder name="name"/> is to be updated whenever the value of the element identified by the option changes. The update is performed in response to a "change" event triggered on the element identified by the option.
 			<p>This option is provided by the <code>widgets/tokentextarea.sync</code> extension.</p>
 			<p>This option is also exposed as a data attribute: <code>data-master="#id-of-master"</code>.</p>
